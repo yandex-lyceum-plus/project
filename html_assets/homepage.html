@@ -1,130 +1,250 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Главная · Wikifan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-    <style>
-        .p-shadow {
-            -webkit-box-shadow: 0px 0px 40px 0px var(--bs-primary);
-            -moz-box-shadow: 0px 0px 40px 0px var(--bs-primary);
-            box-shadow: 0px 0px 40px 0px var(--bs-primary);
-        }
-        .p-shadow-sm {
-            -webkit-box-shadow: 0px 0px 14px 0px rgba(234, 234, 234, .8);
-            -moz-box-shadow: 0px 0px 14px 0px rgba(234, 234, 234, .8);
-            box-shadow: 0px 0px 14px 0px rgba(234, 234, 234, .8);
-        }
-        .title-font {
-            font-family: 'Macondo', cursive;
-        }
-    </style>
-    <link rel="stylesheet" href="assets/sidebar.css">
-    <link rel="stylesheet" href="assets/custom.css">
-    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Главная · Wikifan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/sidebar.css">
+  <link rel="stylesheet" href="assets/custom.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+  <style>
+    .title-font {font-family: 'Macondo', cursive;}
+  </style>
 </head>
-<body>
-    <div class="row">
-        <div class="col-md-3 col-lg-2 d-md-block bg-dark text-white p-3 sidebar collapse p-shadow" style="min-height: 100vh;">
-            <section>
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="32" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"/><path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/><path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/></svg>
-                    <span class="fs-4">Wikifan</span>
-                </a>
-            </section>
-            <section class="sticky-top">
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link active" aria-current="page">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/></svg>
-                            Главная
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#categories" class="nav-link text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/></svg>
-                            Категории
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#popular" class="nav-link text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"><path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/></svg>
-                            Популярные
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#new" class="nav-link text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16"><path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/><path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/><path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/></svg>
-                            Новинки
-                        </a>
-                    </li>
-                </ul>
-            </section>
-            <section class="fixed-bottom mb-3">
-                <hr>
-                <!-- <div class="dropdown" style="margin-left: .5em">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle rounded-circle me-2" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
-                        <strong>user</strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Ваши вики</a></li>
-                        <li><a class="dropdown-item" href="#">Обратная связь</a></li>
-                        <li><a class="dropdown-item" href="#">Профиль</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Выйти</a></li>
-                    </ul>
-                </div> -->
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li>
-                        <a href="login.html" class="nav-link text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/><path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
-                            Вход
-                        </a>
-                        <a href="register.html" class="nav-link text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16"><path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/><path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/></svg>
-                            Регистрация
-                        </a>
-                    </li>
-                </ul>
-            </section>
-        </div>
-        <div class="col">
-            <div>
-                <section class="container text-center" id="home">
-                    <h1 class="display-4 title-font" style="color: var(--bs-primary)">Wikifan</h1>
-                    <form>
-                        <div class="form-floating p-shadow-sm col">
-                            <input type="text" class="form-control" id="searchInput" placeholder="&nbsp;">
-                            <label for="floatingInput">Поиск</label>
-                        </div>
-                </section>
-                <section class="container mt-3" id="categories">
-                    <h1>Категории</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non enim a dolorem consequuntur neque eligendi. Architecto, veniam? Odit necessitatibus accusamus nam ullam, culpa hic recusandae perspiciatis quibusdam nihil delectus sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero laboriosam, facilis, minima ipsam id reprehenderit dolore officia nam nulla cum consequuntur saepe quas, tempora dicta? Officiis laborum a quae nemo.</p>
-                </section>
-                <section class="container mt-3" id="popular">
-                    <h1>Популярные</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non enim a dolorem consequuntur neque eligendi. Architecto, veniam? Odit necessitatibus accusamus nam ullam, culpa hic recusandae perspiciatis quibusdam nihil delectus sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero laboriosam, facilis, minima ipsam id reprehenderit dolore officia nam nulla cum consequuntur saepe quas, tempora dicta? Officiis laborum a quae nemo.</p>
-                </section>
-                <section class="container mt-3" id="new">
-                    <h1>Новинки</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non enim a dolorem consequuntur neque eligendi. Architecto, veniam? Odit necessitatibus accusamus nam ullam, culpa hic recusandae perspiciatis quibusdam nihil delectus sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero laboriosam, facilis, minima ipsam id reprehenderit dolore officia nam nulla cum consequuntur saepe quas, tempora dicta? Officiis laborum a quae nemo.</p>
-                </section>
-
-                <footer>
-                    ...
-                </footer>
-            </div>
-        </div>
+<body style="background-color: #F5F5F5;">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 d-md-block bg-dark text-white p-3 sidebar collapse" style="min-height: 100vh;">
+      <section>
+        <a href="homepage.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="46" height="32" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+          </svg>
+          <span class="fs-2 title-font">Wikifan</span>
+        </a>
+      </section>
+      <section class="sticky-top">
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active" aria-current="page">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+              </svg>
+              Главная
+            </a>
+          </li>
+          <li>
+            <a href="#categories" class="nav-link text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+                <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+              </svg>
+              Категории
+            </a>
+          </li>
+          <li>
+            <a href="#popular" class="nav-link text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+              </svg>
+              Популярные
+            </a>
+          </li>
+          <li>
+            <a href="#new" class="nav-link text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+              </svg>
+              Новинки
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="fixed-bottom mb-3">
+        <hr>
+        <!-- <div class="dropdown" style="margin-left: .5em">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle rounded-circle me-2" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
+              <strong>user</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" href="#">Ваши вики</a></li>
+              <li><a class="dropdown-item" href="#">Обратная связь</a></li>
+              <li><a class="dropdown-item" href="#">Профиль</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Выйти</a></li>
+          </ul>
+          </div> -->
+        <ul class="nav nav-pills flex-column mb-auto w-25">
+          <li>
+            <a href="login.html" class="nav-link text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+              </svg>
+              Вход
+            </a>
+            <a href="register.html" class="nav-link text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+              </svg>
+              Регистрация
+            </a>
+          </li>
+        </ul>
+      </section>
     </div>
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <div class="col">
+      <div>
+        <section class="container text-center" id="home">
+          <h1 class="display-4 title-font" style="color: var(--bs-primary)">Wikifan</h1>
+          <form>
+            <div class="input-group">
+              <button class="btn btn-primary text-center text-white" id="search" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                </svg>
+              </button>
+              <input type="search" class="form-control" placeholder="Поиск" aria-label="&nbsp;" aria-describedby="search">
+            </div>
+          </form>
+        </section>
+        <section class="container mt-3" id="categories">
+          <h1>Категории</h1>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">Видеоигры</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">Terraria</a></li>
+                      <li><a href="#" class="text-decoration-none">Minecraft</a></li>
+                      <li><a href="#" class="text-decoration-none">Genshin Impact</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://ingyen-hatterkep.hu/hatterkepek_tablet/ferfi-visszanez-hatterkep-39124.jpg">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">Кино</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">Star Wars</a></li>
+                      <li><a href="#" class="text-decoration-none">Harry Potter</a></li>
+                      <li><a href="#" class="text-decoration-none">Marvel</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.themoviescene.co.uk/reviews/_img/9713-2.jpg" class="card-img-bottom">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">Аниме</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">One Piece</a></li>
+                      <li><a href="#" class="text-decoration-none">Naruto</a></li>
+                      <li><a href="#" class="text-decoration-none">My Hero Academia</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://besthqwallpapers.com/Uploads/15-12-2016/10892/thumb-mei-misaki-izumi-akazawa-4k-manga-another.jpg" class="card-img-bottom">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">ТВ</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">Memory Alpha</a></li>
+                      <li><a href="#" class="text-decoration-none">Arrowverse</a></li>
+                      <li><a href="#" class="text-decoration-none">SpongeBobia</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://www.personastars.com/sites/default/files/mpreview/14/02/02/712586_Z_000000_CPF.JPG" class="card-img-bottom">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">Книги</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">Midnight Sun</a></li>
+                      <li><a href="#" class="text-decoration-none">The Ballad of Songbirds</a></li>
+                      <li><a href="#" class="text-decoration-none">Shadowhunters</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://besthqwallpapers.com/Uploads/24-8-2016/974/thumb-leather-roots-old-books-guilding.jpg" class="card-img-bottom">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">Музыка</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">Blackpink</a></li>
+                      <li><a href="#" class="text-decoration-none">Lady Gaga</a></li>
+                      <li><a href="#" class="text-decoration-none">BTS</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://1.bp.blogspot.com/-lnoZOXVBtUQ/XV09qaccJYI/AAAAAAAAAOU/fagWJtJfdLIyXAevmatOTRIOeUZnY45KwCLcBGAs/s400/bts-copy.jpg" class="card-img-bottom">
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title h3"><a href="#" class="text-decoration-none">Увлечения</a></h2>
+                    <ul class="card-text list-unstyled w-100">
+                      <li><a href="#" class="text-decoration-none">Cosplay</a></li>
+                      <li><a href="#" class="text-decoration-none">Lego</a></li>
+                      <li><a href="#" class="text-decoration-none">Recipes</a></li>
+                    </ul>
+                  </div>
+                  <img src="https://1.bp.blogspot.com/-8rHxmJhm7u8/XuXhuQM9exI/AAAAAAAAAX4/Io6qCZNmKZEsSy7LoklsQxqcXSjwL-YoACK4BGAsYHg/w400-h250/123.jpg" class="card-img-bottom">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="container mt-3" id="popular">
+          <h1>Популярные</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non enim a dolorem consequuntur neque eligendi. Architecto, veniam? Odit necessitatibus accusamus nam ullam, culpa hic recusandae perspiciatis quibusdam nihil delectus sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero laboriosam, facilis, minima ipsam id reprehenderit dolore officia nam nulla cum consequuntur saepe quas, tempora dicta? Officiis laborum a quae nemo.</p>
+        </section>
+        <section class="container mt-3" id="new">
+          <h1>Новинки</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non enim a dolorem consequuntur neque eligendi. Architecto, veniam? Odit necessitatibus accusamus nam ullam, culpa hic recusandae perspiciatis quibusdam nihil delectus sapiente? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero laboriosam, facilis, minima ipsam id reprehenderit dolore officia nam nulla cum consequuntur saepe quas, tempora dicta? Officiis laborum a quae nemo.</p>
+        </section>
+        <footer class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, cumque, repudiandae iure maiores quo a voluptate tempore illo ut nobis ratione molestias facere neque. Facilis nemo culpa suscipit itaque sit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, voluptatum, id qui repudiandae eos voluptatibus eligendi possimus atque saepe, sapiente similique suscipit vitae esse consequatur delectus laboriosam mollitia sed inventore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe porro, neque vero accusamus facere aut, explicabo ipsam minima, dignissimos sapiente quam eius quod id esse quidem nam unde. Vero, explicabo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quisquam maiores debitis facilis quod nam exercitationem omnis et vitae aliquid praesentium in adipisci, non ut quidem dolorum sint sed assumenda. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, voluptate perspiciatis. Porro optio ullam sapiente doloribus. Quaerat culpa ipsam voluptatibus velit nihil earum cumque minus nobis. Ullam laboriosam facere expedita? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste veritatis quos excepturi facere voluptas sequi itaque ipsum enim, nobis atque, deleniti ducimus laboriosam corrupti corporis aliquam asperiores quod nesciunt cupiditate! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, cumque, repudiandae iure maiores quo a voluptate tempore illo ut nobis ratione molestias facere neque. Facilis nemo culpa suscipit itaque sit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, voluptatum, id qui repudiandae eos voluptatibus eligendi possimus atque saepe, sapiente similique suscipit vitae esse consequatur delectus laboriosam mollitia sed inventore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe porro, neque vero accusamus facere aut, explicabo ipsam minima, dignissimos sapiente quam eius quod id esse quidem nam unde. Vero, explicabo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quisquam maiores debitis facilis quod nam exercitationem omnis et vitae aliquid praesentium in adipisci, non ut quidem dolorum sint sed assumenda. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, voluptate perspiciatis. Porro optio ullam sapiente doloribus. Quaerat culpa ipsam voluptatibus velit nihil earum cumque minus nobis. Ullam laboriosam facere expedita? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste veritatis quos excepturi facere voluptas sequi itaque ipsum enim, nobis atque, deleniti ducimus laboriosam corrupti corporis aliquam asperiores quod nesciunt cupiditate!
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
