@@ -1,6 +1,7 @@
 from django.urls import path
 from django.http import HttpResponse
+from home.views import homepage
 
 urlpatterns = [
-    path('', lambda request: HttpResponse('Home app'))
+    path('', view=homepage, name='homepage'),
 ]
