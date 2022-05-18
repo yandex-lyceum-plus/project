@@ -37,9 +37,10 @@
 <body class="text-center">
     <main class="form-signin">
         <form method="post">
-            {% csrf_token %}
+        {% csrf_token %}
             <h1 class="h2 mb-3">Создай <span style="font-family: 'Rubik Puddles', Arial, Helvetica, sans-serif, cursive; color: var(--bs-red);">свой</span> мир</h1>
             <section id="fields">
+                {% if form_error %}<p>{{form_error}}</p>{% endif %}
                 {% for field in form %}
                 {{ field.errors }}
                 <div class="form-floating mb-1">
