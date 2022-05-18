@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_published', 'img_tmb', )
+    list_display = ('name', 'is_published', 'img_tmb',)
     list_display_links = ('name', )
     list_editable = ('is_published', )
 
@@ -18,5 +18,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('item', 'item_image', )
-    list_display_links = ('item', )
+    list_display = ('item', 'item_image')
+    list_display_links = ('item',)

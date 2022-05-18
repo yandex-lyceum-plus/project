@@ -12,8 +12,8 @@ if path.exists(dotenv_path := BASE_DIR.parent / '.env'):
     load_dotenv(dotenv_path)
 
 # Development settings
-SECRET_KEY = os.getenv('YOUR_SECRET_KEY', 'not_so_secret')
-DEBUG = eval(os.getenv('DEBUG_VALUE', 'True'))
+SECRET_KEY = environ['SECRET_KEY']
+DEBUG = eval(environ['DEBUG'])
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -22,7 +22,6 @@ ALLOWED_HOSTS = [
 
 # Application definition
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'article.apps.ArticleConfig',
     'django.contrib.admin',
@@ -51,7 +50,7 @@ ROOT_URLCONF = 'proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,9 +97,6 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-MEDIA_ROOT = BASE_DIR / 'proj/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = BASE_DIR / 'proj/static'
 STATIC_URL = '/static/'
 
 # Default primary key field type
@@ -108,14 +104,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-LOGIN_URL = '/auth/login/'
-LOGIN_REDIRECT_URL = '/'
-
-
-# SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.com'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'pwd.reset@yandex.ru'
-EMAIL_HOST_PASSWORD = 'Peweas184asygfEWYu'

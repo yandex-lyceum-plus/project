@@ -5,27 +5,15 @@ from article.validators import validate_count_words
 
 
 class Article(models.Model):
-    name = models.CharField(
-        verbose_name='Название',
-        max_length=150
-    )
-    text = models.TextField(
-        verbose_name='Текст',
-        validators=(validate_count_words,)
-    )
+    name = models.CharField(verbose_name='Название', max_length=150)
+    text = models.TextField(verbose_name='Текст', validators=[
+                            validate_count_words, ])
     is_published = models.BooleanField(
-        verbose_name='Опубликовано',
-        default=True
-    )
+        verbose_name='Опубликовано', default=True)
     categories = models.ManyToManyField(
-        verbose_name='Категория',
-        to='Category',
-        related_name='articles'
-    )
-    upload = ImageField(
-        upload_to='uploads/',
-        null=True
-    )
+        verbose_name='Категория', to='Category', related_name='articles')
+
+    upload = ImageField(upload_to='uploads/', null=True)
 
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
@@ -34,7 +22,9 @@ class Article(models.Model):
         return get_thumbnail(self.upload, '400x300', crop='center', quality=51)
 
     def img_tmb(self):
-        return mark_safe(f'<img src="{self.upload.url}" width="50">') if self.upload else 'Нет изображений'
+        if self.upload:
+            return mark_safe(f'<img src="{self.upload.url}" width="50">')
+        return 'Нет изображений'
 
     img_tmb.short_description = 'превью'
     img_tmb.allow_tags = True
@@ -61,11 +51,7 @@ class Category(models.Model):
 class Gallery(models.Model):
     item_image = models.ImageField(upload_to="uploads/", null=True)
     item = models.ForeignKey(
-        Article,
-        on_delete=models.PROTECT,
-        verbose_name="Статья",
-        default=None
-    )
+        Article, on_delete=models.PROTECT, verbose_name="Статья", default=None)
 
     class Meta:
         verbose_name = "Изображение"
