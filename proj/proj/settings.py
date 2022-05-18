@@ -98,6 +98,9 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
+MEDIA_ROOT = BASE_DIR / 'proj/media'
+MEDIA_URL = '/media/'
+STATIC_ROOT = BASE_DIR / 'proj/static'
 STATIC_URL = '/static/'
 
 # Default primary key field type

@@ -1,0 +1,13 @@
+{% extends 'includes/base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include 'includes/sidebar.html' %}
+    <div class="col">
+      <div>
+        {% block col2 %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

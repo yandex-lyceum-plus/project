@@ -31,18 +31,17 @@ class CreateUserForm(UserCreationForm):
 
 
 def signup(request):
-    template = 'register.html'
+    template_name = 'users/register.html'
     form = CreateUserForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
     context = {'form': form, }
-    return render(request, template, context)
+    return render(request, template_name, context)
 
 
 class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(max_length=150,
-                               required=True)
+    username = forms.CharField(max_length=150, required=True)
     email = forms.EmailField(required=True)
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
@@ -55,8 +54,7 @@ class UpdateUserForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     current_year = datetime.now().year
     YEAR_CHOICES = list(map(int, range(1950, datetime.now().year + 1)))
-    birthday = forms.DateField(
-        widget=forms.SelectDateWidget(years=YEAR_CHOICES))
+    birthday = forms.DateField(widget=forms.SelectDateWidget(years=YEAR_CHOICES))
 
     class Meta:
         model = Profile
@@ -65,7 +63,7 @@ class UpdateProfileForm(forms.ModelForm):
 
 @login_required
 def profile(request):
-    template = 'profile.html'
+    template_name = 'users/profile.html'
     user = request.user
     form = UpdateUserForm(request.POST or None, instance=user)
     try:
@@ -82,10 +80,12 @@ def profile(request):
             except IntegrityError:
                 pass
             return redirect(reverse('profile'))
-    context = {'form': form,
-               'form_profile': form_profile,
-               'user': user, }
-    return render(request, template, context)
+    context = {
+        'form': form,
+        'form_profile': form_profile,
+        'user': user,
+    }
+    return render(request, template_name, context)
 
 
 class MyLoginForm(AuthenticationForm):
