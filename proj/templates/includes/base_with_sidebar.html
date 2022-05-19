@@ -5,10 +5,17 @@
 
 {% block content %}
 <div class="row">
+    {% block custom_sidebar %}
     {% include 'includes/sidebar.html' %}
+    {% endblock %}
     <div class="col">
       <div>
+        {% block custom_header %}
+        {% include 'includes/header.html' %}
+        {% endblock %}
+
         {% block col2 %}
+        <h1>Use block <code>col2</code> to add information there</h1>
         {% endblock %}
       </div>
     </div>
