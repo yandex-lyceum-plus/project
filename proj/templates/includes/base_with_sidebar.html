@@ -1,4 +1,7 @@
 {% extends 'includes/base.html' %}
+{% load static %}
+
+{% block sidebar_css %}<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">{% endblock %}
 
 {% block content %}
 <div class="row">

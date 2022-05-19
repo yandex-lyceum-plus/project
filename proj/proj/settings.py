@@ -1,7 +1,6 @@
 from pathlib import Path
 from dotenv import load_dotenv
 from os import path, environ
-import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -98,10 +97,11 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-MEDIA_ROOT = BASE_DIR / 'proj/media'
 MEDIA_URL = '/media/'
-STATIC_ROOT = BASE_DIR / 'proj/static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

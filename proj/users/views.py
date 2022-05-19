@@ -12,9 +12,11 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
 
+NBSP = ' '
+
 class CreateUserForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(
-        attrs={'class': 'form-control', 'placeholder': '&nbsp;'}))
+        attrs={'class': 'form-control', 'placeholder': NBSP}))
 
     class Meta:
         model = User
@@ -23,11 +25,11 @@ class CreateUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['username'].widget.attrs['placeholder'] = NBSP
         self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['password1'].widget.attrs['placeholder'] = NBSP
         self.fields['password2'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['password2'].widget.attrs['placeholder'] = NBSP
 
 
 def signup(request):
@@ -96,9 +98,9 @@ class MyLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['username'].widget.attrs['placeholder'] = NBSP
         self.fields['password'].widget.attrs['class'] = 'form-control'
-        self.fields['password'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['password'].widget.attrs['placeholder'] = NBSP
 
 
 """def login(request):
