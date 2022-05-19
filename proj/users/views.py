@@ -10,6 +10,7 @@ from users.models import Profile
 from datetime import datetime
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.urls import reverse
 
 
 NBSP = ' '
@@ -35,10 +36,15 @@ class CreateUserForm(UserCreationForm):
 def signup(request):
     template_name = 'users/register.html'
     form = CreateUserForm(request.POST or None)
+    form_error = ''
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-    context = {'form': form, }
+            if not User.objects.filter(email=form.cleaned_data['email']):
+                form.save()
+                return redirect(reverse('profile'))
+            else:
+                form_error = f'Почта {form.cleaned_data["email"]} уже используется'
+    context = {'form': form, 'form_error': form_error}
     return render(request, template_name, context)
 
 
