@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
-from os import path, environ
+from os import path
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -11,8 +12,8 @@ if path.exists(dotenv_path := BASE_DIR.parent / '.env'):
     load_dotenv(dotenv_path)
 
 # Development settings
-SECRET_KEY = os.getenv('YOUR_SECRET_KEY', 'not_so_secret')
-DEBUG = eval(os.getenv('DEBUG_VALUE', 'True'))
+SECRET_KEY = os.getenv('SECRET_KEY', None)
+DEBUG = eval(os.getenv('DEBUG', 'True'))
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -110,7 +111,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
-
 
 # SMTP
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
