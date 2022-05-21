@@ -10,8 +10,32 @@
 
 {% block col2 %}
 <div class="container">
-    {% for i in '2314'|make_list %}
-    <p>{% lorem i %}</p>
-    {% endfor %}
+  {# TODO: Все вики, где создатель - юзер #}
+  {% for _ in "1234" %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="https://i.pinimg.com/736x/d9/ee/cf/d9eecfcd07837093b9dc896e279a63f3.jpg" class="img-fluid rounded-start">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <nav aria-label="breadcrumb" class="card-text">
+            <ol class="breadcrumb mb-2">
+              <li class="breadcrumb-item"><a href="#">Музыка</a></li>
+              <li class="breadcrumb-item active" aria-current="page">BTS</li>
+            </ol>
+          </nav>
+          <h2 class="card-title mt-0 fw-bold"><a href="#" class="text-decoration-none">BTS</a></h2>
+          <ul class="card-text list-inline w-100">
+            {# TODO: 6 наиболее популярных статей всех авторов в этой вики #}
+            {% for i in "123456" %}
+            <li class="list-inline-item"><a href="#" class="text-decoration-none">Article {{ i }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

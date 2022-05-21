@@ -107,13 +107,6 @@ def profile(request):
 
 
 @login_required
-def user_ratings(request):
-    # TODO: add extra_context variable, connect database with template
-    template_name = 'users/profile/user_ratings.html'
-    return render(request, template_name)
-
-
-@login_required
 def contribution(request):
     # TODO: add extra_context variable, connect database with template
     template_name = 'users/profile/contribution.html'

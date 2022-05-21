@@ -4,14 +4,13 @@ from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView,
     PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 )
-from users.views import signup, profile, MyLoginForm, contribution, user_ratings, user_wikis
+from users.views import signup, profile, MyLoginForm, contribution, user_wikis
 
 urlpatterns = [
     path('signup/', signup, name='signup'),
     
     path('profile/', profile, name='profile'),
     path('profile/contribution/', contribution, name='contribution'),
-    path('profile/ratings/', user_ratings, name='ratings'),
     path('profile/wikis/', user_wikis, name='user_wikis'),
 
     path('login/', LoginView.as_view(template_name='users/login.html', authentication_form=MyLoginForm), name='login'),
