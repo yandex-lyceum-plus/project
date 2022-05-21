@@ -18,6 +18,13 @@ def popular(request):
 
 
 def new(request):
+    #! есче не новый артикл, а список новых
     template_name = 'article/new.html'
+    extra = {}
+    return render(request, template_name, extra)
+
+
+def read(request, pk):
+    template_name = 'article/a/article.html'
     extra = {}
     return render(request, template_name, extra)
