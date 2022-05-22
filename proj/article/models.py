@@ -1,4 +1,5 @@
 from curses.ascii import US
+from operator import truediv
 from django.db import models
 from sorl.thumbnail import get_thumbnail, ImageField
 from django.utils.safestring import mark_safe
@@ -31,6 +32,10 @@ class MainArticle(models.Model):
         related_name='articles',
         on_delete=models.CASCADE,
         null=True
+    )
+    is_published = models.BooleanField(
+        verbose_name="Опубликовано",
+        default=True
     )
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
