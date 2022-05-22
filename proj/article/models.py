@@ -29,7 +29,8 @@ class MainArticle(models.Model):
         verbose_name='Категория',
         to='Category',
         related_name='articles',
-        on_delete=models.RESTRICT
+        on_delete=models.CASCADE,
+        null=True
     )
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
@@ -61,7 +62,8 @@ class Article(models.Model):
         verbose_name='Автор',
         to=User,
         related_name='author',
-        on_delete=models.RESTRICT
+        on_delete=models.CASCADE,
+        null=True
     )
     text = models.TextField(
         verbose_name='Текст',
@@ -104,11 +106,8 @@ class Category(models.Model):
         null=True
     )
 
-    def get_image_250x250(self):
-        return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
-
-    def get_image_400x300(self):
-        return get_thumbnail(self.upload, '400x300', crop='center', quality=51)
+    def get_image_400x250(self):
+        return get_thumbnail(self.upload, '400x250', crop='center', quality=51)
 
     def img_tmb(self):
         return mark_safe(f'<img src="{self.upload.url}" width="50">') if self.upload else 'Нет изображений'
@@ -144,13 +143,14 @@ class Gallery(models.Model):
 
 class Rating(models.Model):
     star = models.CharField(verbose_name='Оценка', max_length=2, choices=[(str(i), i) for i in range(11)], default='0')
-    article = models.ForeignKey(verbose_name='Статья', to=Article, on_delete=models.CASCADE, related_name='ratings')
+    main_article = models.ForeignKey(verbose_name='Статья', to=MainArticle, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE, related_name='ratings')
+    review = models.TextField(verbose_name='Отзыв', max_length=250)
 
     class Meta:
         verbose_name = 'Оценка'
         verbose_name_plural = 'Оценки'
-        constraints = (UniqueConstraint(name='rating_unique', fields=('article', 'user')), )
+        constraints = (UniqueConstraint(name='rating_unique', fields=('main_article', 'user')), )
     
         def __str__(self):
             return f'{self.star} to {self.article} by {self.user}'
