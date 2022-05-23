@@ -12,7 +12,7 @@ if path.exists(dotenv_path := BASE_DIR.parent / '.env'):
     load_dotenv(dotenv_path)
 
 # Development settings
-SECRET_KEY = os.getenv('SECRET_KEY', None)
+SECRET_KEY = os.getenv('SECRET_KEY', 'secret')
 DEBUG = eval(os.getenv('DEBUG', 'True'))
 
 ALLOWED_HOSTS = (

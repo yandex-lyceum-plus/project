@@ -11,111 +11,25 @@
     <h1 class="fw-bold">Категории</h1>
     {# TODO: Должно выводить все категории по алфавиту, брать три рандомных элемента из них и печатать их #}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+      {% for category in categories %}
       <div class="col mb-3">
         <div class="card">
           <div class="card">
             <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">Видеоигры</a></h2>
+              <h2 class="card-title h3"><a href="#" class="text-decoration-none">{{ category.name }}</a></h2>
               <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">Terraria</a></li>
-                <li><a href="#" class="text-decoration-none">Minecraft</a></li>
-                <li><a href="#" class="text-decoration-none">Genshin Impact</a></li>
+                {% for articles in category.articles.all%}
+                <li><a href="{% url 'read' pk=articles.id %}" class="text-decoration-none">{{articles.title}}</a></li>
+                {% endfor %}
               </ul>
             </div>
-            <img src="https://ingyen-hatterkep.hu/hatterkepek_tablet/ferfi-visszanez-hatterkep-39124.jpg">
+            {% if category.upload %}
+            <img src="{{category.get_image_400x300.url}}">
+            {% endif %}
           </div>
         </div>
       </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">Кино</a></h2>
-              <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">Star Wars</a></li>
-                <li><a href="#" class="text-decoration-none">Harry Potter</a></li>
-                <li><a href="#" class="text-decoration-none">Marvel</a></li>
-              </ul>
-            </div>
-            <img src="https://www.themoviescene.co.uk/reviews/_img/9713-2.jpg" class="card-img-bottom">
-          </div>
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">Аниме</a></h2>
-              <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">One Piece</a></li>
-                <li><a href="#" class="text-decoration-none">Naruto</a></li>
-                <li><a href="#" class="text-decoration-none">My Hero Academia</a></li>
-              </ul>
-            </div>
-            <img src="https://besthqwallpapers.com/Uploads/15-12-2016/10892/thumb-mei-misaki-izumi-akazawa-4k-manga-another.jpg" class="card-img-bottom">
-          </div>
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">ТВ</a></h2>
-              <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">Memory Alpha</a></li>
-                <li><a href="#" class="text-decoration-none">Arrowverse</a></li>
-                <li><a href="#" class="text-decoration-none">SpongeBobia</a></li>
-              </ul>
-            </div>
-            <img src="https://www.personastars.com/sites/default/files/mpreview/14/02/02/712586_Z_000000_CPF.JPG" class="card-img-bottom">
-          </div>
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">Книги</a></h2>
-              <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">Midnight Sun</a></li>
-                <li><a href="#" class="text-decoration-none">The Ballad of Songbirds</a></li>
-                <li><a href="#" class="text-decoration-none">Shadowhunters</a></li>
-              </ul>
-            </div>
-            <img src="https://besthqwallpapers.com/Uploads/24-8-2016/974/thumb-leather-roots-old-books-guilding.jpg" class="card-img-bottom">
-          </div>
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">Музыка</a></h2>
-              <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">Blackpink</a></li>
-                <li><a href="#" class="text-decoration-none">Lady Gaga</a></li>
-                <li><a href="#" class="text-decoration-none">BTS</a></li>
-              </ul>
-            </div>
-            <img src="https://1.bp.blogspot.com/-lnoZOXVBtUQ/XV09qaccJYI/AAAAAAAAAOU/fagWJtJfdLIyXAevmatOTRIOeUZnY45KwCLcBGAs/s400/bts-copy.jpg" class="card-img-bottom">
-          </div>
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title h3"><a href="#" class="text-decoration-none">Увлечения</a></h2>
-              <ul class="card-text list-unstyled w-100">
-                <li><a href="#" class="text-decoration-none">Cosplay</a></li>
-                <li><a href="#" class="text-decoration-none">Lego</a></li>
-                <li><a href="#" class="text-decoration-none">Recipes</a></li>
-              </ul>
-            </div>
-            <img src="https://1.bp.blogspot.com/-8rHxmJhm7u8/XuXhuQM9exI/AAAAAAAAAX4/Io6qCZNmKZEsSy7LoklsQxqcXSjwL-YoACK4BGAsYHg/w400-h250/123.jpg" class="card-img-bottom">
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
     {% include 'home/includes/see_more_btn.html' with url=categories_url %}
   </section>
@@ -123,66 +37,25 @@
     <h1 class="fw-bold">Популярные</h1>
     {# TODO: Популярные MainArticle сортятся по рейтингам, 4 штуки #}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+      {% for article in most_popular_articles %}
       <div class="col mb-3">
         <div class="card">
           <div class="card-body">
             <nav aria-label="breadcrumb" class="card-text">
               <ol class="breadcrumb mb-2">
                 <li class="breadcrumb-item"><a href="#">Музыка</a></li>
-                <li class="breadcrumb-item active" aria-current="page">BTS</li>
+                <li class="breadcrumb-item active" aria-current="page">{{article.main_aticle.title}}</li>
               </ol>
             </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">BTS</a></h2>
-            <article><span style="color: var(--bs-yellow);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg></span> 7.9 / 10</article>
+            <h2 class="card-title h3 mt-0"><a href="{% url 'read' pk=article.main_aticle.id %}" class="text-decoration-none">{{article.main_aticle.title}}</a></h2>
+            <article><span style="color: var(--bs-yellow);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg></span> {{article.star}} / 10</article>
           </div>
-          <img src="https://infobiscuit.com/wp-content/uploads/2020/11/%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C-%D1%8F%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%B8%D0%B9-%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC-bts-lights-boy-with-luv-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B0%D1%81%D0%BF%D0%B0%D0%BA%D0%BE%D0%B2%D0%BA%D0%B0-400x250.jpg" class="card-img-bottom">
+          {% if article.main_aticle.upload %}
+            <img src="{{article.main_aticle.get_image_400x300.url}}">
+          {% endif %}
         </div>
       </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Видеоигры</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Minecraft</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Minecraft</a></h2>
-            <article><span style="color: var(--bs-yellow);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg></span> 8.3 / 10</article>
-          </div>
-          <img src="https://sun9-40.userapi.com/impf/c622028/v622028956/19877/IzYCxZBqun4.jpg?size=400x250&quality=96&sign=b1f10524c635eb231d804a66cd172173&type=album" class="card-img-bottom">
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Аниме</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Чистая романтика</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Чистая романтика</a></h2>
-            <article><span style="color: var(--bs-yellow);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg></span> 6.4 / 10</article>
-          </div>
-          <img src="http://otaku.name/wp-content/uploads/2012/03/Junjou.jpg" class="card-img-bottom">
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Кино</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Гарри Поттер</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Гарри Поттер</a></h2>
-            <article><span style="color: var(--bs-yellow);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg></span> 9.2 / 10</article>
-          </div>
-          <img src="https://besthqwallpapers.com/Uploads/14-8-2017/18501/thumb-4k-harry-potter-and-the-deathly-hallows-fantasy-daniel-radcliffe-emma-watson.jpg" class="card-img-bottom">
-        </div>
-      </div>
+      {% endfor %}
     </div>
     {% include 'home/includes/see_more_btn.html' with url=popular_url %}
   </section>
@@ -190,66 +63,19 @@
     <h1 class="fw-bold">Новинки</h1>
     {# Новинки сортятся по недавним Article (не MainArticle), выводятся MainArticle, к которым принадлежат недавние Article. 4 штуки #}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+      {% for article in last_articles %}
       <div class="col mb-3">
         <div class="card">
           <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Кино</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Marvel</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Marvel</a></h2>
-            <article><span class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-range" viewBox="0 0 16 16"><path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg></span>&nbsp;25.03.2022</article>
+            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">{{article.name}}</a></h2>
+            <article><span class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-range" viewBox="0 0 16 16"><path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg></span>&nbsp;{{article.published_date}}</article>
           </div>
-          <img src="https://besthqwallpapers.com/Uploads/30-11-2017/31282/thumb-avengers-infinty-war-4k-2018-movie-superheroes.jpg" class="card-img-bottom">
+          {% if article.upload %}
+          <img src="{{article.get_image_400x300.url}}" class="card-img-bottom">
+          {% endif %}
         </div>
       </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Аниме</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Атака титанов</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Атака титанов</a></h2>
-            <article><span class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-range" viewBox="0 0 16 16"><path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg></span>&nbsp;05.02.2022</article>
-          </div>
-          <img src="https://besthqwallpapers.com/Uploads/22-11-2017/29890/thumb-dancing-titan-4k-armin-arlert-art-manga.jpg" class="card-img-bottom">
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Видеоигры</a></li>
-                <li class="breadcrumb-item active" aria-current="page">GTA</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">GTA</a></h2>
-            <article><span class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-range" viewBox="0 0 16 16"><path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg></span>&nbsp;18.11.2021</article>
-          </div>
-          <img src="http://gamesblock.ru/_bl/3/03600602.jpg" class="card-img-bottom">
-        </div>
-      </div>
-      <div class="col mb-3">
-        <div class="card">
-          <div class="card-body">
-            <nav aria-label="breadcrumb" class="card-text">
-              <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="#">Аниме</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Наруто</li>
-              </ol>
-            </nav>
-            <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Наруто</a></h2>
-            <article><span class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-range" viewBox="0 0 16 16"><path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg></span>&nbsp;06.02.2022</article>
-          </div>
-          <img src="https://besthqwallpapers.com/Uploads/22-6-2018/56731/thumb-naruto-shippuden-art-boruto-uzumaki-clan-naruto.jpg" class="card-img-bottom">
-        </div>
-      </div>
+      {% endfor %}
     </div>
     {% include 'home/includes/see_more_btn.html' with url=new_url %}
   </section>

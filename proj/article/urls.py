@@ -5,6 +5,6 @@ urlpatterns = (
     path('categories/', views.categories, name='categories'),
     path('popular/', views.popular, name='popular'),
     path('new/', views.new, name='new'),
-    path('a/<slug:pk>', views.read, name='read'),
-    path('', views.redirect_to_homepage),
+    path('a/<int:pk>', views.read, name='read'),
+    path('', views.redirect_to_homepage, name='home_redirect'),
 )
