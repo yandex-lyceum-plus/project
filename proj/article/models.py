@@ -78,6 +78,9 @@ class Article(models.Model):
         verbose_name='Опубликовано',
         default=True
     )
+    published_date = models.DateTimeField(
+        verbose_name="Дата публикации"
+        )
     upload = ImageField(
         upload_to='uploads/',
         null=True
@@ -151,6 +154,7 @@ class Rating(models.Model):
     main_article = models.ForeignKey(verbose_name='Статья', to=MainArticle, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE, related_name='ratings')
     review = models.TextField(verbose_name='Отзыв', max_length=250)
+    published_date = models.DateTimeField(verbose_name="Дата отзыва")
 
     class Meta:
         verbose_name = 'Оценка'
