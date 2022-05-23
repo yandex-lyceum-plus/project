@@ -1,41 +1,35 @@
-from curses.ascii import US
-from operator import truediv
 from django.db import models
 from sorl.thumbnail import get_thumbnail, ImageField
 from django.utils.safestring import mark_safe
 from article.validators import validate_count_words
 from django.db.models import UniqueConstraint
 from django.contrib.auth import get_user_model
+import django
 
 
 class MainArticle(models.Model):
-    title = models.CharField(
+    title = models.CharField(default=None,
         verbose_name='Заголовок',
         max_length=150
     )
-    text = models.TextField(
+    text = models.TextField(default=None,
         verbose_name='Текст',
         validators=(validate_count_words,)
     )
-    articles = models.ManyToManyField(
+    articles = models.ManyToManyField(default=None,
         verbose_name='Страницы',
         to='Article',
         related_name='main_articles'
     )
-    upload = ImageField(
+    upload = ImageField(default=None,
         upload_to='uploads/',
         null=True
     )
-    category = models.ForeignKey(
+    category = models.ForeignKey(default=None,
         verbose_name='Категория',
         to='Category',
         related_name='articles',
-        on_delete=models.CASCADE,
-        null=True
-    )
-    is_published = models.BooleanField(
-        verbose_name="Опубликовано",
-        default=True
+        on_delete=models.RESTRICT
     )
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
@@ -59,18 +53,17 @@ class MainArticle(models.Model):
 User = get_user_model()
 
 class Article(models.Model):
-    name = models.CharField(
+    name = models.CharField(default=None,
         verbose_name='Название',
         max_length=150
     )
-    author = models.ForeignKey(
+    author = models.ForeignKey(default=None,
         verbose_name='Автор',
         to=User,
         related_name='author',
-        on_delete=models.CASCADE,
-        null=True
+        on_delete=models.RESTRICT
     )
-    text = models.TextField(
+    text = models.TextField(default=None,
         verbose_name='Текст',
         validators=(validate_count_words,)
     )
@@ -78,13 +71,15 @@ class Article(models.Model):
         verbose_name='Опубликовано',
         default=True
     )
-    published_date = models.DateTimeField(
-        verbose_name="Дата публикации"
-        )
-    upload = ImageField(
+    upload = ImageField(default=None,
         upload_to='uploads/',
         null=True
     )
+
+    published_date = models.DateTimeField(
+        verbose_name="Дата публикации",
+        default=django.utils.timezone.now,
+        )
 
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
@@ -109,13 +104,16 @@ class Article(models.Model):
 class Category(models.Model):
     name = models.CharField(verbose_name='Название', max_length=150)
 
-    upload = ImageField(
+    upload = ImageField(default=None,
         upload_to='uploads/',
         null=True
     )
 
-    def get_image_400x250(self):
-        return get_thumbnail(self.upload, '400x250', crop='center', quality=51)
+    def get_image_250x250(self):
+        return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
+
+    def get_image_400x300(self):
+        return get_thumbnail(self.upload, '400x300', crop='center', quality=51)
 
     def img_tmb(self):
         return mark_safe(f'<img src="{self.upload.url}" width="50">') if self.upload else 'Нет изображений'
