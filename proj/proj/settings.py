@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 from os import path, environ
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -11,13 +12,13 @@ if path.exists(dotenv_path := BASE_DIR.parent / '.env'):
     load_dotenv(dotenv_path)
 
 # Development settings
-SECRET_KEY = environ['SECRET_KEY']
-DEBUG = eval(environ['DEBUG'])
+SECRET_KEY = os.getenv('SECRET_KEY', 'secret')
+DEBUG = eval(os.getenv('DEBUG', 'True'))
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = (
     '127.0.0.1',
     'localhost'
-]
+)
 
 # Application definition
 INSTALLED_APPS = [
@@ -97,14 +98,24 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-MEDIA_ROOT = BASE_DIR / 'proj/media'
 MEDIA_URL = '/media/'
-STATIC_ROOT = BASE_DIR / 'proj/static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = '/auth/profile'
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/'
+
+# SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pwd.reset@yandex.ru'
+EMAIL_HOST_PASSWORD = 'Peweas184asygfEWYu'

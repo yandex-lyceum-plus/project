@@ -8,13 +8,14 @@ from django.db.utils import IntegrityError
 from django.urls import reverse
 from users.models import Profile
 from datetime import datetime
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.urls import reverse
 
+
+NBSP = ' '
 
 class CreateUserForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(
-        attrs={'class': 'form-control', 'placeholder': '&nbsp;'}))
+        attrs={'class': 'form-control', 'placeholder': NBSP}))
 
     class Meta:
         model = User
@@ -23,20 +24,25 @@ class CreateUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['username'].widget.attrs['placeholder'] = NBSP
         self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['password1'].widget.attrs['placeholder'] = NBSP
         self.fields['password2'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['placeholder'] = '&nbsp;'
+        self.fields['password2'].widget.attrs['placeholder'] = NBSP
 
 
 def signup(request):
     template_name = 'users/register.html'
     form = CreateUserForm(request.POST or None)
+    form_error = ''
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-    context = {'form': form, }
+            if not User.objects.filter(email=form.cleaned_data['email']):
+                form.save()
+                return redirect(reverse('profile'))
+            else:
+                form_error = f'Почта {form.cleaned_data["email"]} уже используется'
+    context = {'form': form, 'form_error': form_error}
     return render(request, template_name, context)
 
 
@@ -61,17 +67,29 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ('birthday',)
 
 
+class MyLoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['placeholder'] = NBSP
+        self.fields['password'].widget.attrs['class'] = 'form-control'
+        self.fields['password'].widget.attrs['placeholder'] = NBSP
+
+
 @login_required
 def profile(request):
-    template_name = 'users/profile.html'
+    template_name = 'users/profile/profile.html'
     user = request.user
     form = UpdateUserForm(request.POST or None, instance=user)
     try:
         prof = request.user.profile
     except User.profile.RelatedObjectDoesNotExist:
         prof = None
-    form_profile = UpdateProfileForm(
-        request.POST or None, instance=prof)
+    form_profile = UpdateProfileForm(request.POST or None, instance=prof)
     if request.method == 'POST':
         if form.is_valid() and form_profile.is_valid():
             form.save()
@@ -88,36 +106,16 @@ def profile(request):
     return render(request, template_name, context)
 
 
-class MyLoginForm(AuthenticationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = '&nbsp;'
-        self.fields['password'].widget.attrs['class'] = 'form-control'
-        self.fields['password'].widget.attrs['placeholder'] = '&nbsp;'
+@login_required
+def contribution(request):
+    # TODO: add extra_context variable, connect database with template
+    template_name = 'users/profile/contribution.html'
+    return render(request, template_name)
 
 
-"""def login(request):
-    template = 'login.html'
-    form = LoginForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            print(1)
-            cd = form.cleaned_data
-            print(cd)
-            user = authenticate(
-                username=cd['username'], password=cd['password'])
-            if user:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    context = {'form': form, }
-    return render(request, template, context)"""
+@login_required
+def user_wikis(request):
+    # TODO: add extra_context variable, connect database with template
+    #! вики = MainArticle, не Article
+    template_name = 'users/profile/user_wikis.html'
+    return render(request, template_name)

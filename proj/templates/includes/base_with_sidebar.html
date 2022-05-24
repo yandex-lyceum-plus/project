@@ -1,11 +1,21 @@
 {% extends 'includes/base.html' %}
+{% load static %}
+
+{% block sidebar_css %}<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">{% endblock %}
 
 {% block content %}
 <div class="row">
+    {% block custom_sidebar %}
     {% include 'includes/sidebar.html' %}
-    <div class="col">
+    {% endblock %}
+    <div class="col ps-0 pe-0">
       <div>
+        {% block custom_header %}
+        {% include 'includes/header.html' %}
+        {% endblock %}
+
         {% block col2 %}
+        <h1>Use block <code>col2</code> to add information there</h1>
         {% endblock %}
       </div>
     </div>

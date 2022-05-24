@@ -1,10 +1,15 @@
-from django.contrib import admin
-from django.urls import path, include
+import django
+import django.conf.urls.static
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('users.urls')),
-    path('edit/', include('edit.urls')),
-    path('read/', include('article.urls')),
-    path('', include('home.urls')),
+    django.urls.path('admin/', django.contrib.admin.site.urls),
+    django.urls.path('auth/', django.urls.include('users.urls')),
+    django.urls.path('edit/', django.urls.include('edit.urls')),
+    django.urls.path('read/', django.urls.include('article.urls')),
+    django.urls.path('', django.urls.include('home.urls')),
 ]
+
+if django.conf.settings.DEBUG:
+    urlpatterns += django.conf.urls.static.static(django.conf.settings.STATIC_URL, document_root=django.conf.settings.STATIC_ROOT)
+    urlpatterns += django.conf.urls.static.static(django.conf.settings.MEDIA_URL, document_root=django.conf.settings.MEDIA_ROOT)

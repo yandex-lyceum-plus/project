@@ -1,0 +1,24 @@
+{% extends 'includes/sidebar_base.html' %}
+
+{% block sidebar_ul %}
+
+{% url 'profile' as profile_url %}
+{% url 'contribution' as contribution_url %}
+{% url 'user_wikis' as user_wikis_url %}
+
+<li class="nav-item">
+  <a href="{{ profile_url }}" class="nav-link {% if request.path == profile_url %}active{% else %}text-white{% endif %}" aria-current="page">
+    {% include 'users/includes/nav_links/link1.html' %}
+  </a>
+</li>
+<li class="nav-item">
+  <a href="{{ contribution_url }}" class="nav-link {% if request.path == contribution_url %}active{% else %}text-white{% endif %}" aria-current="page">
+    {% include 'users/includes/nav_links/link3.html' %}
+  </a>
+</li>
+<li class="nav-item">
+  <a href="{{ user_wikis_url }}" class="nav-link {% if request.path == user_wikis_url %}active{% else %}text-white{% endif %}" aria-current="page">
+    {% include 'users/includes/nav_links/link4.html' %}
+  </a>
+</li>
+{% endblock %}
