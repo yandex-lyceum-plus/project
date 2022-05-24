@@ -1,6 +1,6 @@
-from django.urls import path
-from django.http import HttpResponse
+import django.urls
+import home.views
 
 urlpatterns = [
-    path('', lambda request: HttpResponse('Home app'))
+    django.urls.path('', view=home.views.homepage, name='homepage'),
 ]

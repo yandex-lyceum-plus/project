@@ -1,0 +1,14 @@
+<h1 class="fw-bold display-3 container mb-0">@{{ username }}</h1>
+<nav class="container mb-3">
+  <div class="d-flex justify-content-start">
+    <a href="{% url 'profile' %}" class="text-decoration-none px-2 ps-0" aria-current="page">
+      {% include 'users/includes/nav_links/link1.html' %}
+    </a>
+    <a href="{% url 'contribution' %}" class="text-decoration-none px-2" aria-current="page">
+      {% include 'users/includes/nav_links/link3.html' %}
+    </a>
+    <a href="{% url 'user_wikis' %}" class="text-decoration-none px-2" aria-current="page">
+      {% include 'users/includes/nav_links/link4.html' %}
+    </a>
+  </div>
+</nav>

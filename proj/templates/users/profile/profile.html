@@ -1,0 +1,57 @@
+{% extends 'includes/base_with_sidebar.html' %}
+
+{% block custom_sidebar %}
+{% include 'users/includes/sidebar.html' %}
+{% endblock %}
+
+{% block custom_header %}
+{% include 'users/includes/header.html' with username='aboba2013pro' %}
+{% endblock %}
+
+{% block col2 %}
+<div class="container">
+  <form class="mt-4">
+    <h2 class="fw-bold h1">Основное</h2>
+    <div class="mb-3">
+      <label for="name_input" class="form-label">Имя</label>
+      <input type="text" class="form-control" id="name_input" placeholder="Иванов Иван Иванович">
+    </div>
+    <div class="mb-3">
+      <label for="email_input" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email_input" placeholder="name@example.com">
+    </div>
+    <button type="submit" class="btn btn-primary text-white">Сохранить</button>
+  </form>
+
+  <form class="mt-5">
+    <h2 class="fw-bold h1">Смена пароля</h2>
+    <div class="mb-3">
+      <label for="pwd_old_input" class="form-label">Старый пароль</label>
+      <input type="password" class="form-control" id="pwd_old_input">
+    </div>
+    <div class="mb-3">
+      <label for="pwd1_input" class="form-label">Новый пароль</label>
+      <input type="password" class="form-control" id="pwd1_input">
+    </div>
+    <div class="mb-3">
+      <label for="pwd2_input" class="form-label">Повтор пароля</label>
+      <input type="password" class="form-control" id="pwd2_input">
+    </div>
+    <button type="submit" class="btn btn-primary text-white">Сохранить</button>
+  </form>
+
+  <form class="mt-5 mb-5">
+    <h2 class="fw-bold h1">Опасная зона!</h2>
+    <div class="mb-3 form-check">
+      <input class="form-check-input" type="checkbox" id="remove_btn_check">
+      <label class="form-check-label" for="remove_btn_check">Я понимаю, что аккаунт будет безвозвратно удален</label>
+    </div>
+    <button type="submit" class="mb-5 btn btn-danger disabled" id="remove_btn">Удалить аккаунт</button>
+  </form>
+  <script>
+    document.getElementById("remove_btn_check").onclick = function () {
+      document.getElementById("remove_btn").className = `mb-5 btn btn-danger${(document.getElementById('remove_btn_check').checked ? "" : " disabled")}`;
+    }
+  </script>
+</div>
+{% endblock %}

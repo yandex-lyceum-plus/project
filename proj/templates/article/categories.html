@@ -1,0 +1,29 @@
+{% extends 'includes/base_with_sidebar.html' %}
+
+{% block col2 %}
+
+<div class="container mt-3">
+  {% for category in categories %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        {% if category.upload %}
+          <img src="{{category.get_image_400x300.url}}" class="img-fluid rounded-start">
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title h3"><a href="#" class="text-decoration-none">{{ category.name }}</a></h2>
+          <ul class="card-text list-unstyled w-100">
+            {% for articles in category.articles.all%}
+              <li><a href="{% url 'read' pk=articles.id %}" class="text-decoration-none">{{articles.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
