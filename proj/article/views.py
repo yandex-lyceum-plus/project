@@ -94,7 +94,6 @@ def search_articles(request):
         )} for i in MainArticle.objects.filter(title__icontains=search_querry)]
     else:
         articles = None
-    print(articles)
     extra = {'articles': articles}
     return render(request, template_name, extra)
 
