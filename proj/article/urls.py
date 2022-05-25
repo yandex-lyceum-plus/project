@@ -8,5 +8,5 @@ urlpatterns = (
     path('a/<int:pk>', views.read, name='read'),
     path('', views.redirect_to_homepage, name='home_redirect'),
     path('category/<int:pk>', views.category, name='category'),
-
+    path('result/', views.search_articles, name='search_art'),
 )
