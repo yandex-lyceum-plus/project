@@ -9,4 +9,5 @@ urlpatterns = (
     path('', views.redirect_to_homepage, name='home_redirect'),
     path('category/<int:pk>', views.category, name='category'),
     path('result/', views.search_articles, name='search_art'),
+    path('a2/<int:pk>', views.read_second_article, name='second_article'),
 )

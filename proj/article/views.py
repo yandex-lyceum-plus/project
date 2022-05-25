@@ -50,11 +50,6 @@ def new(request):
     return render(request, template_name, extra)
 
 
-class RatingForm(forms.Form):
-    rating = forms.IntegerField(
-        label='Ваша оценка', validators=[validate_rating, ])
-
-
 def read(request, pk):
     template_name = 'article/a/article.html'
     article = get_object_or_404(
@@ -76,7 +71,9 @@ def read(request, pk):
                         Rating.objects.create(
                             star=new_rate, main_article=article, user=request.user)
     extra = {'article': article, 'user_rate': user_rate,
-             'authenticated': authenticated}
+             'authenticated': authenticated,
+             'category': Category.objects.filter(id=article.category_id).first(),
+             'second_aritcles': [i for i in article.articles.all()]}
     return render(request, template_name, extra)
 
 
@@ -107,4 +104,11 @@ def search_articles(request):
     else:
         articles = None
     extra = {'articles': articles}
+    return render(request, template_name, extra)
+
+
+def read_second_article(request, pk):
+    template_name = 'article/a/second_article.html'
+    article = get_object_or_404(Article.objects.all(), pk=pk)
+    extra = {'article': article}
     return render(request, template_name, extra)
