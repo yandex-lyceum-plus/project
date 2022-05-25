@@ -31,10 +31,6 @@ class MainArticle(models.Model):
         related_name='articles',
         on_delete=models.RESTRICT
     )
-    is_published = models.BooleanField(
-        verbose_name='Опубликовано',
-        default=True
-    )
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
 
