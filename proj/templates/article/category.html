@@ -3,20 +3,23 @@
 {% block col2 %}
 
 <div class="container mt-3">
-    {% if category.upload %}
-      <img src="{{category.get_image_400x300.url}}" class="img-fluid rounded-start">
-    {% endif %}
-    <p>Статьи:</p>
-    {% for article in articles%}
+    <h1 class="fw-bold">{{ category.name }}</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+      {% for article in articles %}
       {% if article %}
-        <li><a href="{% url 'read' pk=article.id %}" class="text-decoration-none">{{article.title}}</a></li>
-        {% if article.upload %}
-          <img src="{{article.get_image_400x300.url}}" class="img-fluid rounded-start">
-        {% endif %}
-      {% else %}
-        <li><br></li>
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title h3"><a href="{% url 'second_article' pk=article.id %}" class="text-decoration-none">{{ article.title }}</a></h2>
+          </div>
+          {% if article.upload %}
+          <img src="{{ article.get_image_400x300.url }}" class="card-img-bottom">
+          {% endif %}
+        </div>
+      </div>
       {% endif %}
-    {% endfor %}
+      {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
