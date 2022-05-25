@@ -115,6 +115,8 @@ LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # SMTP
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'pwd.reset@yandex.ru'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_PORT = 587
