@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(default=None, max_length=150, verbose_name='Заголовок')),
                 ('text', models.TextField(default=None, validators=[article.validators.validate_count_words], verbose_name='Текст')),
                 ('upload', sorl.thumbnail.fields.ImageField(default=None, null=True, upload_to='uploads/')),
-                ('articles', models.ManyToManyField(default=None, related_name='main_articles', to='article.Article', verbose_name='Страницы')),
+                ('articles', models.ManyToManyField(default=None, related_name='main_articles', to='article.article', verbose_name='Страницы')),
                 ('category', models.ForeignKey(default=None, on_delete=django.db.models.deletion.RESTRICT, related_name='articles', to='article.category', verbose_name='Категория')),
             ],
             options={

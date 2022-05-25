@@ -113,9 +113,9 @@ LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.com'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_HOST_USER = 'pwd.reset@yandex.ru'
-EMAIL_HOST_PASSWORD = 'Peweas184asygfEWYu'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PWD')
