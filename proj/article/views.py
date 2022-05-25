@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from article.models import Category, MainArticle, Rating, Article
 from home.views import chek_article
+from django import forms
+from article.validators import validate_rating
 
 
 def redirect_to_homepage(request):
@@ -47,11 +49,30 @@ def new(request):
     return render(request, template_name, extra)
 
 
+class RatingForm(forms.Form):
+    rating = forms.IntegerField(label='Ваша оценка', validators=[validate_rating,])
+
+
 def read(request, pk):
     template_name = 'article/a/article.html'
     article = get_object_or_404(MainArticle.objects.filter(is_published=True), pk=pk)
-    extra = {'article': article}
+    authenticated = False
+    user_rate = None
+    if request.user.is_authenticated:
+        authenticated = True
+        user_rate = Rating.objects.filter(main_article=article, user=request.user).first()
+        if request.method == 'POST':
+            new_rate = request.POST['rate']
+            if new_rate.isdigit():
+                if 0 <= int(new_rate) <= 10:
+                    if user_rate:
+                        user_rate.star = int(new_rate)
+                        user_rate.save(update_fields=['star'])
+                    else:
+                        Rating.objects.create(star=new_rate, main_article=article, user=request.user)
+    extra = {'article': article, 'user_rate': user_rate, 'authenticated': authenticated}
     return render(request, template_name, extra)
+
 
 def category(request, pk):
     template_name='article/category.html'

@@ -26,5 +26,11 @@
     {{article.text}}
   </div>
 </div>
-
+{% if authenticated %}
+<form method="post">
+  {% csrf_token %}
+  <label>Ваша оценка: <input type="text" name="rate" value="{{user_rate.star}}">/10</label>
+  <button type="submit">Оценить</button>
+</form>
+{% endif %}
 {% endblock %}
