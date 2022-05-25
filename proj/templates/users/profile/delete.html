@@ -1,0 +1,51 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block title %}Удаление аккаунта{% endblock %}
+
+{% block head_extra %}
+<style>
+    html, body {height: 100%;}
+    body {
+        display: flex; align-items: center;
+        padding-top: 40px; padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+    .form {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="form">
+    <form method='post'>
+        {% csrf_token %}
+        <h1 class="h2 mb-3">Удаление аккаунта</h1>
+        {% if e %}
+        <div class="alert alert-danger" role="alert">
+            {{ e }}
+        </div>
+        {% endif %}
+        <section id="fields">
+            <div class="mb-3 form-check">
+                <input class="form-check-input" type="checkbox" id="remove_btn_check">
+                <label class="form-check-label" for="remove_btn_check">Я понимаю, что аккаунт будет безвозвратно удален</label>
+            </div>
+        </section>
+        <p class="text-muted mb-3"><small><a href="{% url 'profile' %}">Назад</a></small></p>
+        <button class="w-100 btn btn-danger disabled" id="remove_btn" type="submit">Удалить аккаунт</a>
+    </form>
+</main>
+{% endblock %}
+
+{% block script %}
+<script>
+document.getElementById("remove_btn_check").onclick = function () {
+    document.getElementById("remove_btn").className = `w-100 btn btn-danger${(document.getElementById('remove_btn_check').checked ? "" : " disabled")}`;
+}
+</script>
+{% endblock %}

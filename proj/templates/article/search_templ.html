@@ -1,0 +1,32 @@
+{% extends 'includes/base_with_sidebar.html' %}
+
+{% block col2 %}
+
+<div class="container mt-3">
+    {% for article in articles %}
+    {% if article.main_aticle %}
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            {% if article.main_aticle.upload %}
+              <img src="{{article.main_aticle.get_image_400x300.url}}" class="img-fluid rounded-start">
+            {% endif %}
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <nav aria-label="breadcrumb" class="card-text">
+                <ol class="breadcrumb mb-2">
+                  <li class="breadcrumb-item"><a href="{% url 'category' pk=article.category.id %}">{{article.category.name}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{article.main_aticle.title}}</li>
+                </ol>
+              </nav>
+              <h2 class="card-title h3 mt-0"><a href="{% url 'read' pk=article.main_aticle.id %}" class="text-decoration-none">{{article.main_aticle.title}}</a></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}
