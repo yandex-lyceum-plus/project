@@ -1,0 +1,22 @@
+{% extends 'includes/base_with_sidebar.html' %}
+
+{% block col2 %}
+
+<div class="container mt-3">
+    {% if category.upload %}
+      <img src="{{category.get_image_400x300.url}}" class="img-fluid rounded-start">
+    {% endif %}
+    <p>Статьи:</p>
+    {% for article in articles%}
+      {% if article %}
+        <li><a href="{% url 'read' pk=article.id %}" class="text-decoration-none">{{article.title}}</a></li>
+        {% if article.upload %}
+          <img src="{{article.get_image_400x300.url}}" class="img-fluid rounded-start">
+        {% endif %}
+      {% else %}
+        <li><br></li>
+      {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

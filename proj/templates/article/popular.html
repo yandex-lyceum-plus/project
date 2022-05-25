@@ -15,7 +15,7 @@
         <div class="card-body">
           <nav aria-label="breadcrumb" class="card-text">
             <ol class="breadcrumb mb-2">
-              <li class="breadcrumb-item"><a href="#">{{article.category.name}}</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'category' pk=article.category.id %}">{{article.category.name}}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{article.main_aticle.title}}</li>
             </ol>
           </nav>

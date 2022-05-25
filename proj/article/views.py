@@ -50,6 +50,12 @@ def new(request):
 def read(request, pk):
     template_name = 'article/a/article.html'
     article = get_object_or_404(MainArticle.objects.filter(is_published=True), pk=pk)
-    print(article.title)
     extra = {'article': article}
+    return render(request, template_name, extra)
+
+def category(request, pk):
+    template_name='article/category.html'
+    category = get_object_or_404(Category.objects.all(), pk=pk)
+    articles = MainArticle.objects.filter(category_id=category.id, is_published=True)
+    extra = {'category': category, 'articles': articles}
     return render(request, template_name, extra)
