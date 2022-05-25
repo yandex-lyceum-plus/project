@@ -26,10 +26,10 @@
   </div>
 </div>
 {% if authenticated %}
-<form method="post" action="{% url 'read' pk=article.id%}">
+<form method="post" action="{% url 'read' pk=article.id%}" class="container">
   {% csrf_token %}
-  <label>Ваша оценка: <input type="text" name="rate" value="{{user_rate.star}}">/10</label>
-  <button type="submit">Оценить</button>
+  <label>Ваша оценка: <input type="number" name="rate" value="{{user_rate.star}}" min="0" max="10">/10</label>
+  <button type="submit" class="btn btn-primary text-white">Оценить</button>
 </form>
 {% endif %}
 <section class="container mt-5 mb-5" id="new">
