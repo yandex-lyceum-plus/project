@@ -7,16 +7,20 @@
   <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-4">
-        {% if category.upload %}
-          <img src="{{category.get_image_400x300.url}}" class="img-fluid rounded-start">
+        {% if category.category.upload %}
+          <img src="{{category.category.get_image_400x300.url}}" class="img-fluid rounded-start">
         {% endif %}
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h2 class="card-title h3"><a href="#" class="text-decoration-none">{{ category.name }}</a></h2>
+          <h2 class="card-title h3"><a href="{% url 'category' pk=category.category.id %}" class="text-decoration-none">{{ category.category.name }}</a></h2>
           <ul class="card-text list-unstyled w-100">
-            {% for articles in category.articles.all%}
-              <li><a href="{% url 'read' pk=articles.id %}" class="text-decoration-none">{{articles.title}}</a></li>
+            {% for articles in category.articles%}
+              {% if articles %}
+                <li><a href="{% url 'read' pk=articles.id %}" class="text-decoration-none">{{articles.title}}</a></li>
+              {% else %}
+                <li><br></li>
+              {% endif %}
             {% endfor %}
           </ul>
         </div>

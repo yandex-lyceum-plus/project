@@ -109,8 +109,8 @@ class Rating(models.Model):
     main_article = models.ForeignKey(verbose_name='Статья', to=MainArticle, on_delete=models.CASCADE,
                                      related_name='ratings')
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE, related_name='ratings')
-    review = models.TextField(verbose_name='Отзыв', max_length=250)
-    published_date = models.DateTimeField(verbose_name="Дата отзыва")
+    review = models.TextField(verbose_name='Отзыв', max_length=250, default=None, null=True)
+    published_date = models.DateTimeField(verbose_name="Дата отзыва", default=django.utils.timezone.now)
 
     class Meta:
         verbose_name = 'Оценка'
