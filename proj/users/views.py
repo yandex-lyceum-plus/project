@@ -13,6 +13,7 @@ from django.urls import reverse
 
 NBSP = ' '
 
+
 class CreateUserForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={'class': 'form-control', 'placeholder': NBSP}))
@@ -47,24 +48,16 @@ def signup(request):
 
 
 class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(max_length=150, required=True)
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name')
-
-
-class UpdateProfileForm(forms.ModelForm):
-    current_year = datetime.now().year
-    YEAR_CHOICES = list(map(int, range(1950, datetime.now().year + 1)))
-    birthday = forms.DateField(widget=forms.SelectDateWidget(years=YEAR_CHOICES))
-
-    class Meta:
-        model = Profile
-        fields = ('birthday',)
+        fields = ('first_name', 'last_name', 'email')
+    
+    first_name = forms.CharField(label='Имя', widget=forms.TextInput(
+                                 attrs={'placeholder': 'Иван', 'class': 'form-control'}))
+    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(
+                                attrs={'placeholder': 'Иванов', 'class': 'form-control'}))
+    email = forms.CharField(label='Email', widget=forms.TextInput(
+                            attrs={'placeholder': 'name@example.com', 'class': 'form-control'}))
 
 
 class MyLoginForm(AuthenticationForm):
@@ -75,8 +68,8 @@ class MyLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = NBSP
         self.fields['password'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['placeholder'] = NBSP
         self.fields['password'].widget.attrs['placeholder'] = NBSP
 
 
@@ -85,30 +78,32 @@ def profile(request):
     template_name = 'users/profile/profile.html'
     user = request.user
     form = UpdateUserForm(request.POST or None, instance=user)
-    try:
-        prof = request.user.profile
-    except User.profile.RelatedObjectDoesNotExist:
-        prof = None
-    form_profile = UpdateProfileForm(request.POST or None, instance=prof)
     if request.method == 'POST':
-        if form.is_valid() and form_profile.is_valid():
+        if form.is_valid():
             form.save()
-            try:
-                form_profile.save()
-            except IntegrityError:
-                pass
             return redirect(reverse('profile'))
     context = {
         'form': form,
-        'form_profile': form_profile,
         'user': user,
     }
     return render(request, template_name, context)
 
 
 @login_required
+def delete_profile(request):
+    template_name = 'users/profile/delete.html'
+    if request.method == 'POST':
+        try:
+            u = User.objects.get(username=request.user)
+            u.delete()
+            return redirect('homepage')
+        except Exception as e:
+            return render(request, template_name, {'exc': e})
+    return render(request, template_name)
+
+
+@login_required
 def contribution(request):
-    # TODO: add extra_context variable, connect database with template
     template_name = 'users/profile/contribution.html'
     return render(request, template_name)
 
