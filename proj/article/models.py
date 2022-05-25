@@ -7,34 +7,17 @@ from django.contrib.auth import get_user_model
 import django
 
 
+User = get_user_model()
+
+
 class MainArticle(models.Model):
-    title = models.CharField(default=None,
-        verbose_name='Заголовок',
-        max_length=150
-    )
-    text = models.TextField(default=None,
-        verbose_name='Текст',
-        validators=(validate_count_words,)
-    )
-    articles = models.ManyToManyField(default=None,
-        verbose_name='Страницы',
-        to='Article',
-        related_name='main_articles'
-    )
-    upload = ImageField(default=None,
-        upload_to='uploads/',
-        null=True
-    )
-    category = models.ForeignKey(default=None,
-        verbose_name='Категория',
-        to='Category',
-        related_name='articles',
-        on_delete=models.RESTRICT
-    )
-    is_published = models.BooleanField(
-        verbose_name='Опубликовано',
-        default=True
-    )
+    title = models.CharField(default=None, verbose_name='Заголовок', max_length=150)
+    text = models.TextField(default=None, verbose_name='Текст', validators=(validate_count_words,))
+    articles = models.ManyToManyField(default=None, verbose_name='Страницы', to='Article', related_name='main_articles')
+    upload = ImageField(default=None, upload_to='uploads/', null=True)
+    category = models.ForeignKey(default=None, verbose_name='Категория', to='Category', related_name='articles',
+                                 on_delete=models.RESTRICT)
+    is_published = models.BooleanField(verbose_name='Опубликовано', default=True)
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
 
@@ -54,36 +37,15 @@ class MainArticle(models.Model):
         verbose_name = 'главная статья'
         verbose_name_plural = 'главные статьи'
 
-User = get_user_model()
 
 class Article(models.Model):
-    name = models.CharField(default=None,
-        verbose_name='Название',
-        max_length=150
-    )
-    author = models.ForeignKey(default=None,
-        verbose_name='Автор',
-        to=User,
-        related_name='author',
-        on_delete=models.RESTRICT
-    )
-    text = models.TextField(default=None,
-        verbose_name='Текст',
-        validators=(validate_count_words,)
-    )
-    is_published = models.BooleanField(
-        verbose_name='Опубликовано',
-        default=True
-    )
-    upload = ImageField(default=None,
-        upload_to='uploads/',
-        null=True
-    )
-
-    published_date = models.DateTimeField(
-        verbose_name="Дата публикации",
-        default=django.utils.timezone.now,
-        )
+    name = models.CharField(default=None, verbose_name='Название', max_length=150)
+    author = models.ForeignKey(default=None, verbose_name='Автор', to=User, related_name='author',
+                               on_delete=models.RESTRICT)
+    text = models.TextField(default=None, verbose_name='Текст', validators=(validate_count_words,))
+    is_published = models.BooleanField(verbose_name='Опубликовано', default=True)
+    upload = ImageField(default=None, upload_to='uploads/', null=True)
+    published_date = models.DateTimeField(verbose_name="Дата публикации", default=django.utils.timezone.now)
 
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
@@ -107,11 +69,7 @@ class Article(models.Model):
 
 class Category(models.Model):
     name = models.CharField(verbose_name='Название', max_length=150)
-
-    upload = ImageField(default=None,
-        upload_to='uploads/',
-        null=True
-    )
+    upload = ImageField(default=None, upload_to='uploads/', null=True)
 
     def get_image_250x250(self):
         return get_thumbnail(self.upload, '250x250', crop='center', quality=51)
@@ -135,12 +93,7 @@ class Category(models.Model):
 
 class Gallery(models.Model):
     item_image = models.ImageField(upload_to="uploads/", null=True)
-    item = models.ForeignKey(
-        Article,
-        on_delete=models.PROTECT,
-        verbose_name="Статья",
-        default=None
-    )
+    item = models.ForeignKey(Article, on_delete=models.PROTECT, verbose_name="Статья", default=None)
 
     class Meta:
         verbose_name = "Изображение"
@@ -153,7 +106,8 @@ class Gallery(models.Model):
 
 class Rating(models.Model):
     star = models.CharField(verbose_name='Оценка', max_length=2, choices=[(str(i), i) for i in range(11)], default='0')
-    main_article = models.ForeignKey(verbose_name='Статья', to=MainArticle, on_delete=models.CASCADE, related_name='ratings')
+    main_article = models.ForeignKey(verbose_name='Статья', to=MainArticle, on_delete=models.CASCADE,
+                                     related_name='ratings')
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE, related_name='ratings')
     review = models.TextField(verbose_name='Отзыв', max_length=250)
     published_date = models.DateTimeField(verbose_name="Дата отзыва")

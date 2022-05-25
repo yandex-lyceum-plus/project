@@ -5,66 +5,24 @@
 {% endblock %}
 
 {% block custom_header %}
-{% include 'users/includes/header.html' with username='aboba2013pro' %}
+{% include 'users/includes/header.html' with username=request.user.username %}
 {% endblock %}
 
 {% block col2 %}
 <div class="container">
   {# TODO: Выводит все Article от юзера с сортировкой по времени (сначала недавние) #}
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-    {% for _ in "1234" %}
+    {% for article in articles %}
     <div class="col mb-3">
       <div class="card">
         <div class="card-body">
-          <nav aria-label="breadcrumb" class="card-text">
-            <ol class="breadcrumb mb-2">
-              <li class="breadcrumb-item"><a href="#">Видеоигры</a></li> {# категория #}
-              <li class="breadcrumb-item active" aria-current="page">Minecraft</li>  {# MainArticle #}
-            </ol>
-          </nav>
-          <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">Появилась дата выхода фильма по Minecraft</a></h2>
-          <article>Lorem ipsum dolor sit amet consectetur adipisicing elit...</article>
+          <h2 class="card-title h3 mt-0"><a href="{% url 'article' pk=article.id %}" class="text-decoration-none">{{ article.name }}</a></h2>
+          <article>{{ article.text|truncatewords:5 }}</article>
           <article class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>&nbsp;aboba2013pro</article>
+          </svg>&nbsp;{{ article.author }}</article>
         </div>
-        <img src="https://i0.wp.com/mundo-geek.com/wp-content/uploads/2019/12/how-to-see-how-many-hours-played-on-minecraft.jpg" class="card-img-bottom">
-      </div>
-    </div>
-    <div class="col mb-3">
-      <div class="card">
-        <div class="card-body">
-          <nav aria-label="breadcrumb" class="card-text">
-            <ol class="breadcrumb mb-2">
-              <li class="breadcrumb-item"><a href="#">Аниме</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Чистая романтика</li>
-            </ol>
-          </nav>
-          <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">5 пар из аниме, которые заставят вас верить в любовь</a></h2>
-          <article>Sapiente, quo in. Eaque vero, vitae repellat quos...</article>
-          <article class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>&nbsp;aboba2013pro</article>
-        </div>
-        <img src="http://otaku.name/wp-content/uploads/2012/03/Junjou.jpg" class="card-img-bottom">
-      </div>
-    </div>
-    <div class="col mb-3">
-      <div class="card">
-        <div class="card-body">
-          <nav aria-label="breadcrumb" class="card-text">
-            <ol class="breadcrumb mb-2">
-              <li class="breadcrumb-item"><a href="#">Музыка</a></li>
-              <li class="breadcrumb-item active" aria-current="page">BTS</li>
-            </ol>
-          </nav>
-          <h2 class="card-title h3 mt-0"><a href="#" class="text-decoration-none">BTS сломали интернет</a></h2>
-          <article>Ad vero aliquam fugit eligendi? Fugit in iste ut ea...</article>
-          <article class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>&nbsp;aboba2013pro</article>
-        </div>
-        <img src="https://www.femina.co.id/images/images_article/4a53c643124712f481a099c075d300b8.jpg" class="card-img-bottom">
+        <img src="{{ article.get_image_400x300.url }}" class="card-img-bottom">
       </div>
     </div>
     {% endfor %}

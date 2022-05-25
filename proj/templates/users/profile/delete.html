@@ -25,6 +25,11 @@
     <form method='post'>
         {% csrf_token %}
         <h1 class="h2 mb-3">Удаление аккаунта</h1>
+        {% if e %}
+        <div class="alert alert-danger" role="alert">
+            {{ e }}
+        </div>
+        {% endif %}
         <section id="fields">
             <div class="mb-3 form-check">
                 <input class="form-check-input" type="checkbox" id="remove_btn_check">

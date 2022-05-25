@@ -3,15 +3,14 @@ from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView,
     PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 )
-from users.views import signup, profile, MyLoginForm, contribution, user_wikis, delete_profile
+from users.views import signup, profile, MyLoginForm, contribution, delete_profile
 
 urlpatterns = [
     path('signup/', signup, name='signup'),
     
     path('profile/', profile, name='profile'),
-    path('profile/delete/', delete_profile, name='delete_profile'),
     path('profile/contribution/', contribution, name='contribution'),
-    path('profile/wikis/', user_wikis, name='user_wikis'),
+    path('profile/delete/', delete_profile, name='delete_profile'),
 
     path('login/', LoginView.as_view(template_name='users/login.html', authentication_form=MyLoginForm), name='login'),
     path('logout/', LogoutView.as_view(template_name='users/logout.html'), name='logout'),

@@ -9,6 +9,7 @@ from django.urls import reverse
 from users.models import Profile
 from datetime import datetime
 from django.urls import reverse
+from article.models import Article
 
 
 NBSP = ' '
@@ -94,23 +95,17 @@ def delete_profile(request):
     template_name = 'users/profile/delete.html'
     if request.method == 'POST':
         try:
-            u = User.objects.get(username=request.user)
-            u.delete()
+            User.objects.filter(username=request.user).update(is_active=False)
             return redirect('homepage')
         except Exception as e:
-            return render(request, template_name, {'exc': e})
+            return render(request, template_name, {'e': e})
     return render(request, template_name)
 
 
 @login_required
 def contribution(request):
     template_name = 'users/profile/contribution.html'
-    return render(request, template_name)
-
-
-@login_required
-def user_wikis(request):
-    # TODO: add extra_context variable, connect database with template
-    #! вики = MainArticle, не Article
-    template_name = 'users/profile/user_wikis.html'
-    return render(request, template_name)
+    extra_context = {
+        'articles': Article.objects.filter(author=request.user).order_by('published_date')
+    }
+    return render(request, template_name, extra_context)

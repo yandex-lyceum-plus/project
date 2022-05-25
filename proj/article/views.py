@@ -31,7 +31,6 @@ def popular(request):
 
 
 def new(request):
-    #! есче не новый артикл, а список новых
     template_name = 'article/new.html'
     last_articles = Article.objects.filter(is_published=True).order_by('published_date')[:10]
     extra = {'last_articles': last_articles}
@@ -41,6 +40,12 @@ def new(request):
 def read(request, pk):
     template_name = 'article/a/article.html'
     article = get_object_or_404(MainArticle.objects.filter(is_published=True), pk=pk)
-    print(article.title)
+    extra = {'article': article}
+    return render(request, template_name, extra)
+
+
+def read_article(request, pk):
+    template_name = 'article/a/article.html'
+    article = get_object_or_404(Article.objects.filter(is_published=True), pk=pk)
     extra = {'article': article}
     return render(request, template_name, extra)
