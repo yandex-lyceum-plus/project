@@ -4,7 +4,7 @@
 <header class="container">
   <div class="card bg-dark text-white mt-3">
     {% if article.upload %}
-    <img src="{{article.get_image_250x250.url}}" class="card-img" style="opacity: 0.6;">
+    <img src="{{ article.get_image_400x300.url }}" class="card-img" style="opacity: 0.6; max-height: 70vh;">
     {% endif %}
     <div class="card-img-overlay">
       <h1 class="fw-bold display-3 mb-0 card-title">{{article.title}}</h1>
@@ -20,10 +20,9 @@
 {% endblock %}
 
 {% block col2 %}
-
 <div class="mt-3">
   <div class="container">
-    {{article.text}}
+    {{ article.text }}
   </div>
 </div>
 {% if authenticated %}

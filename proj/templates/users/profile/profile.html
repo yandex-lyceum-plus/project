@@ -5,49 +5,45 @@
 {% endblock %}
 
 {% block custom_header %}
-{% include 'users/includes/header.html' with username='aboba2013pro' %}
+{% include 'users/includes/header.html' with username=request.user.username %}
 {% endblock %}
 
 {% block col2 %}
 <div class="container">
-  <form class="mt-4">
+  <form class="mt-4" method="post" action="{% url 'profile' %}">
+    {% csrf_token %}
     <h2 class="fw-bold h1">Основное</h2>
     <div class="mb-3">
       <label for="name_input" class="form-label">Имя</label>
-      <input type="text" class="form-control" id="name_input" placeholder="Иванов Иван Иванович">
+      {{ form.first_name }}
     </div>
     <div class="mb-3">
-      <label for="email_input" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email_input" placeholder="name@example.com">
+      <label for="name_input" class="form-label">Фамилия</label>
+      {{ form.last_name }}
+    </div>
+    <div class="mb-3">
+      <label for="id_email" class="form-label">Email</label>
+      {{ form.email }}
     </div>
     <button type="submit" class="btn btn-primary text-white">Сохранить</button>
   </form>
 
-  <form class="mt-5">
-    <h2 class="fw-bold h1">Смена пароля</h2>
-    <div class="mb-3">
-      <label for="pwd_old_input" class="form-label">Старый пароль</label>
-      <input type="password" class="form-control" id="pwd_old_input">
-    </div>
-    <div class="mb-3">
-      <label for="pwd1_input" class="form-label">Новый пароль</label>
-      <input type="password" class="form-control" id="pwd1_input">
-    </div>
-    <div class="mb-3">
-      <label for="pwd2_input" class="form-label">Повтор пароля</label>
-      <input type="password" class="form-control" id="pwd2_input">
-    </div>
-    <button type="submit" class="btn btn-primary text-white">Сохранить</button>
-  </form>
+  <h2 class="fw-bold mt-5"><a href="{% url 'password_change' %}" class="text-decoration-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+      <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+      <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+    </svg>
+    &nbsp;Смена пароля
+  </a></h2>
 
-  <form class="mt-5 mb-5">
+  <div class="mt-5 mb-5">
     <h2 class="fw-bold h1">Опасная зона!</h2>
     <div class="mb-3 form-check">
       <input class="form-check-input" type="checkbox" id="remove_btn_check">
       <label class="form-check-label" for="remove_btn_check">Я понимаю, что аккаунт будет безвозвратно удален</label>
     </div>
-    <button type="submit" class="mb-5 btn btn-danger disabled" id="remove_btn">Удалить аккаунт</button>
-  </form>
+    <a href="{% url 'delete_profile' %}" class="mb-5 btn btn-danger disabled" id="remove_btn">Удалить аккаунт</a>
+  </div>
   <script>
     document.getElementById("remove_btn_check").onclick = function () {
       document.getElementById("remove_btn").className = `mb-5 btn btn-danger${(document.getElementById('remove_btn_check').checked ? "" : " disabled")}`;

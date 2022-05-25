@@ -21,7 +21,7 @@ ALLOWED_HOSTS = (
 )
 
 # Application definition
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'article.apps.ArticleConfig',
@@ -31,12 +31,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'sorl.thumbnail',
+    
+    "crispy_bootstrap5",
+    'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
-]
+    'sorl.thumbnail',
+)
 
-MIDDLEWARE = [
+MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -44,7 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+)
 
 ROOT_URLCONF = 'proj.urls'
 
@@ -113,9 +115,11 @@ LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # SMTP
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'pwd.reset@yandex.ru'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PWD')
+
+# Crispy
+CRISPY_TEMPCRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+LATE_PACK = 'bootstrap5'
