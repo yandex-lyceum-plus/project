@@ -58,7 +58,7 @@ def read(request, pk):
 
 def read_article(request, pk):
     template_name = 'article/a/article.html'
-    article = get_object_or_404(Article.objects.filter(is_published=True), pk=pk)
+    article = get_object_or_404(MainArticle.objects.filter(is_published=True), pk=pk)
     authenticated = False
     user_rate = None
     if request.user.is_authenticated:
