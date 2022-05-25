@@ -89,7 +89,6 @@ def category(request, pk):
 def search_articles(request):
     template_name = 'article/search_templ.html'
     search_querry = request.GET.get('search', '')
-
     ratings = Rating.objects.values('star', 'main_article',)
     sl = {}
     for i in ratings:
@@ -98,11 +97,11 @@ def search_articles(request):
         else:
             sl[i['main_article']] = [int(i['star'])]
     if search_querry:
-        articles = sorted([{'main_aticle': MainArticle.objects.filter(
-            id=i, title__icontains=search_querry).first(), 'star': sum(sl[i])/len(sl[i]), 'category': Category.objects.filter(id=MainArticle.objects.filter(
-                id=i).first().category_id).first()} for i in sl], key=lambda x: -x['star'])[:4]
+        articles = [{'main_aticle': i, 'category': Category.objects.filter(id=i.category_id).first(
+        )} for i in MainArticle.objects.filter(title__icontains=search_querry)]
     else:
         articles = None
+    print(articles)
     extra = {'articles': articles}
     return render(request, template_name, extra)
 
