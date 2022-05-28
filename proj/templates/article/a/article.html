@@ -25,7 +25,7 @@
     {{ article.text }}
   </div>
 </div>
-{% if authenticated %}
+{% if request.user.is_authenticated %}
 <form method="post" action="{% url 'read' pk=article.id%}" class="container">
   {% csrf_token %}
   <label>Ваша оценка: <input type="number" name="rate" value="{{user_rate.star}}" min="0" max="10">/10</label>
