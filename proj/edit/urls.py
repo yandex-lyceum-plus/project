@@ -1,6 +1,8 @@
 from django.urls import path
-from django.http import HttpResponse
+from article.views import redirect_to_homepage
+from edit.views import edit_article
 
 urlpatterns = [
-    path('', lambda request: HttpResponse('Edit app'))
+    path('', redirect_to_homepage),
+    path('<int:pk>/', edit_article, name='edit_article')
 ]

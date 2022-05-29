@@ -13,9 +13,9 @@ User = get_user_model()
 class MainArticle(models.Model):
     title = models.CharField(default=None, verbose_name='Заголовок', max_length=150)
     text = models.TextField(default=None, verbose_name='Текст', validators=(validate_count_words,))
-    articles = models.ManyToManyField(default=None, verbose_name='Страницы', to='Article', related_name='main_articles')
+    articles = models.ManyToManyField(default=None, verbose_name='Статьи', to='Article', related_name='main_articles')
     upload = ImageField(default=None, upload_to='uploads/', null=True)
-    category = models.ForeignKey(default=None, verbose_name='Категория', to='Category', related_name='articles',
+    category = models.ForeignKey(verbose_name='Категория', to='Category', related_name='articles',
                                  on_delete=models.RESTRICT)
     is_published = models.BooleanField(verbose_name='Опубликовано', default=True)
     def get_image_250x250(self):
@@ -34,8 +34,8 @@ class MainArticle(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'главная статья'
-        verbose_name_plural = 'главные статьи'
+        verbose_name = 'вики'
+        verbose_name_plural = 'вики'
 
 
 class Article(models.Model):
@@ -105,7 +105,8 @@ class Gallery(models.Model):
 
 
 class Rating(models.Model):
-    star = models.CharField(verbose_name='Оценка', max_length=2, choices=[(str(i), i) for i in range(11)], default='0')
+    CHOICES = [(str(i), i) for i in range(11)]
+    star = models.CharField(verbose_name='Оценка', max_length=2, choices=CHOICES, default='0')
     main_article = models.ForeignKey(verbose_name='Статья', to=MainArticle, on_delete=models.CASCADE,
                                      related_name='ratings')
     user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE, related_name='ratings')

@@ -1,6 +1,6 @@
 from pathlib import Path
 from dotenv import load_dotenv
-from os import path, environ
+from os import path
 import os
 
 
@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     "crispy_bootstrap5",
+    'markitup',
     'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
     'sorl.thumbnail',
@@ -125,3 +126,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PWD')
 # Crispy
 CRISPY_TEMPCRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 LATE_PACK = 'bootstrap5'
+
+# MarkitUp
+MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
+MARKITUP_SET = 'markitup/sets/markdown'

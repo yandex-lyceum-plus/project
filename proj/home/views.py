@@ -3,7 +3,7 @@ from article.models import MainArticle, Category, Article, Rating
 from django.db.models import Prefetch
 
 
-def chek_article(sp):
+def check_article(sp):
     while len(sp) < 3:
         sp.append(None)
     return(sp)
@@ -19,7 +19,7 @@ def homepage(request):
             sl[i.category_id] += [i]
         else:
             sl[i.category_id] = [i]
-    categories = sorted([{'category': Category.objects.filter(id=i).first(), 'articles': chek_article(sl[i][:3])}
+    categories = sorted([{'category': Category.objects.filter(id=i).first(), 'articles': check_article(sl[i][:3])}
                          for i in sl], key=lambda x: x['category'].name)
     last_articles = Article.objects.filter(
         is_published=True).order_by('-published_date')[:4]
