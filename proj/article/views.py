@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from article.models import Category, MainArticle, Rating, Article
-from home.views import chek_article
+from home.views import check_article
 from django.urls import reverse
 
 
@@ -17,7 +17,7 @@ def categories(request):
             category_dict[i.category_id] += [i]
         else:
             category_dict[i.category_id] = [i]
-    categories = sorted([{'category': Category.objects.get(id=i), 'articles': chek_article(category_dict[i][:3])}
+    categories = sorted([{'category': Category.objects.get(id=i), 'articles': check_article(category_dict[i][:3])}
                          for i in category_dict], key=lambda x: x['category'].name)
     extra = {'categories': categories}
     return render(request, template_name, extra)
@@ -42,8 +42,7 @@ def popular(request):
 
 def new(request):
     template_name = 'article/new.html'
-    last_articles = Article.objects.filter(
-        is_published=True).order_by('-published_date')
+    last_articles = Article.objects.filter(is_published=True).order_by('-published_date')
     extra = {'last_articles': last_articles}
     return render(request, template_name, extra)
 
@@ -58,27 +57,26 @@ def read(request, pk):
 
 def read_article(request, pk):
     template_name = 'article/a/article.html'
-    article = get_object_or_404(
-        MainArticle.objects.filter(is_published=True), pk=pk)
+    article = get_object_or_404(MainArticle.objects.filter(is_published=True), pk=pk)
     user_rate = None
     if request.user.is_authenticated:
-        user_rate = Rating.objects.filter(
-            main_article=article, user=request.user).first()
+        user_rate = Rating.objects.filter(main_article=article, user=request.user).first()
         if request.method == 'POST':
             new_rate = request.POST['rate']
             if new_rate.isdigit():
                 if 0 <= int(new_rate) <= 10:
-                    # update_or_create - UNIQUE constraint failed: article_rating.main_article_id, article_rating.user_id
                     if user_rate:
                         user_rate.star = int(new_rate)
                         user_rate.save(update_fields=['star'])
                     else:
-                        Rating.objects.create(
-                            star=new_rate, main_article=article, user=request.user)
+                        Rating.objects.create(star=new_rate, main_article=article, user=request.user)
                     return redirect(reverse('read', args=[article.id]))
-    extra = {'article': article, 'user_rate': user_rate,
-             'category': Category.objects.filter(id=article.category_id).first(),
-             'second_aritcles': [i for i in article.articles.all()]}
+    extra = {
+        'article': article,
+        'user_rate': user_rate,
+        'category': Category.objects.filter(id=article.category_id).first(),
+        'second_aritcles': [i for i in article.articles.all()]
+    }
     return render(request, template_name, extra)
 
 
