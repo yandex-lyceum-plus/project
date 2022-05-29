@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, get_object_or_404, redirect
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -20,6 +21,10 @@ def edit_article(request: WSGIRequest, pk):
     article = get_object_or_404(Article, id=pk)
     if article.author.id != request.user.id:
         return redirect('homepage')
+    if request.method == "POST":
+        article_form = UpdateArticleForm(request.POST, instance=article)
+        if article_form.is_valid():
+            article_form.save()  
     form = UpdateArticleForm(instance=article)
     extra = {
         'article': article,
