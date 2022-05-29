@@ -1,0 +1,30 @@
+{% extends 'includes/base_with_sidebar.html' %}
+{% load markitup_tags %}
+
+{% block custom_header %}
+{% markitup_media %}
+<header class="container">
+  <div class="card bg-dark text-white mt-3">
+    {% if article.upload %}
+    <img src="{{ article.get_image_400x300.url }}" class="card-img" style="opacity: 0.6; max-height: 70vh;">
+    {% endif %}
+    <div class="card-img-overlay">
+      <h1 class="fw-bold display-3 mb-0 card-title">{{ article.name }}</h1>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block col2 %}
+<div class="mt-3 mb-5">
+  <div class="container">
+    <p><a href="{% url 'second_article' pk=article.id %}" class="btn btn-primary text-white btn-sm">Посмотреть статью</a></p>
+    <form method="post" class="pb-5">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary text-white">Сохранить</button>
+      {{ form.text }}
+      <button type="submit" class="btn btn-primary text-white">Сохранить</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

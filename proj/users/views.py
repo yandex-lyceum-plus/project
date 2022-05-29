@@ -1,13 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import UserCreationForm, UsernameField, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django import forms
-from django.db.utils import IntegrityError
 from django.urls import reverse
-from users.models import Profile
-from datetime import datetime
 from django.urls import reverse
 from article.models import Article
 
